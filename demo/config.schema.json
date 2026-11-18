@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Decision Lab configuration",
+  "type": "object",
+  "required": ["entries"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "requestsDirectory": {
+      "type": "string",
+      "minLength": 1,
+      "default": "./requests",
+      "description": "Directory of request JSON files. Relative paths resolve from this configuration file. Subdirectories are included."
+    },
+    "port": { "type": "integer", "minimum": 1, "maximum": 65535, "default": 4310 },
+    "shell": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "executable": { "type": "string", "minLength": 1, "default": "pwsh", "description": "PowerShell 7 executable name or absolute path." },
+        "loadProfile": { "type": "boolean", "default": true, "description": "Load PowerShell profiles, making profile functions such as LocalLaya available." }
+      }
+    },
+    "timeoutMs": { "type": "integer", "minimum": 100, "maximum": 3600000, "default": 120000 },
+    "maxConcurrency": { "type": "integer", "minimum": 1, "maximum": 32, "default": 4 },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "required": ["id", "name"],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": { "properties": { "kind": { "const": "llm" } }, "required": ["kind"] },
+            "then": { "required": ["llm"], "not": { "anyOf": [{ "required": ["command"] }, { "required": ["parser"] }, { "required": ["warmupCommand"] }] } },
+            "else": { "required": ["command"], "not": { "required": ["llm"] } }
+          }
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$", "description": "Unique preset id. Different configurations of one model must have different ids." },
+          "name": { "type": "string", "minLength": 1 },
+          "kind": { "enum": ["command", "llm"], "default": "command" },
+          "description": { "type": "string", "minLength": 1 },
+          "mode": { "type": "string", "minLength": 1, "default": "custom", "examples": ["cloud", "sidecar", "local", "cpu"] },
+          "command": { "type": "string", "minLength": 1, "pattern": "(^|\\s)\\{input\\}(\\s|$)", "description": "PowerShell command with a standalone, unquoted {input} placeholder. The runner quotes the file path." },
+          "warmupCommand": { "type": "string", "minLength": 1, "description": "Optional warm-up command. Can use an unquoted {input} placeholder; receives the first selected request. Runs separately from comparisons." },
+          "parser": { "enum": ["auto", "copilot", "locallaya", "llm"], "default": "auto" },
+          "selected": { "type": "boolean", "default": true },
+          "loadProfile": { "type": "boolean", "description": "Overrides shell.loadProfile for this entry." },
+          "workingDirectory": { "type": "string", "minLength": 1, "default": ".", "description": "Working directory, resolved relative to the config file." },
+          "timeoutMs": { "type": "integer", "minimum": 100, "maximum": 3600000, "description": "Per-entry timeout, overriding the global value. Applies to comparisons and warm-ups." },
+          "env": { "type": "object", "additionalProperties": { "type": "string" }, "description": "Environment variables to pass to this invocation's PowerShell process." },
+          "llm": {
+            "type": "object",
+            "required": ["model", "systemPrompt"],
+            "additionalProperties": false,
+            "properties": {
+              "provider": { "const": "copilot", "default": "copilot" },
+              "model": { "type": "string", "minLength": 1, "examples": ["gpt-6-luna"] },
+              "reasoningEffort": { "type": "string", "minLength": 1, "examples": ["none", "low", "medium", "high", "xhigh", "max"], "description": "Must be advertised by the selected model. Omit for its default. List models and efforts with npm run models:llm." },
+              "systemPrompt": { "type": "string", "minLength": 1, "description": "The complete replacement system prompt. The request JSON is sent unchanged as the user message, with a matching structured-output schema." },
+              "cliPath": { "type": "string", "minLength": 1, "description": "Optional Copilot executable or JS entry point. Defaults to the installed native CLI on PATH, then the SDK's bundled runtime. Relative paths resolve from the config file." }
+            }
+          }
+        }
+      }
+    }
+  }
+}

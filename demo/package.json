@@ -1,0 +1,36 @@
+{
+  "name": "decision-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "dev": "node --watch server/index.ts --dev",
+    "start": "node server/index.ts",
+    "build": "tsc --noEmit && vite build",
+    "check": "tsc --noEmit",
+    "test": "node --test --test-concurrency=1 tests/*.test.ts",
+    "pretest:e2e": "npm run build",
+    "test:e2e": "playwright test",
+    "test:live": "node scripts/live-smoke.ts",
+    "models:llm": "node scripts/copilot-llm.ts --models"
+  },
+  "dependencies": {
+    "@github/copilot-sdk": "1.0.34",
+    "lucide-react": "1.72.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.65.0",
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.3.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.8"
+  }
+}

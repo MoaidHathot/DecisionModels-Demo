@@ -1,0 +1,36 @@
+{
+  "state": "I was charged twice for my order. Please refund the duplicate charge.",
+  "answers": {
+    "refund": { "type": "noul", "noul": 0.9908, "confidence": 0.9908, "answer_confidence": 0.9908, "action": { "act_probability": 1 } },
+    "team": {
+      "type": "choice",
+      "choice": "billing",
+      "probabilities": { "billing": 1, "engineering": 0, "support": 0 },
+      "confidence": 0.9995,
+      "answer_confidence": 1,
+      "action": { "act_probability": 1 }
+    },
+    "severity": {
+      "type": "score",
+      "score": 1.7551,
+      "legend": { "0": "Low", "1": "Medium", "2": "High" },
+      "probabilities": { "0": 0.0312, "1": 0.1824, "2": 0.7863 },
+      "confidence": 0.4469,
+      "answer_confidence": 0.7863,
+      "action": { "act_probability": 1 }
+    }
+  },
+  "usage": { "input_tokens": 141, "output_tokens": 0, "truncated": false },
+  "routing": {
+    "lane": "multilingual:cuda",
+    "model": "multilingual",
+    "device": "cuda",
+    "backend": "laya-python",
+    "ms": 552.4377000000004,
+    "queueMs": 0.09289999999964493,
+    "exec": { "mode": "torch-accelerated", "device": "cuda", "graphReplayEnabled": true },
+    "initialization": { "processMs": 10209.161600000001, "totalMs": 10035.8 },
+    "profile": { "lifetime": "persistent", "graphs": "on", "acceleration": "on" }
+  },
+  "backend": "remote"
+}

@@ -1,0 +1,18 @@
+{
+  "state": "Love the app! It would be great if I could export my dashboard as a PDF. Everything works fine today; this would just save me a few clicks when sharing a weekly update.",
+  "questions": {
+    "intent": {
+      "type": "choice",
+      "instructions": "What is the primary purpose of this message?",
+      "choices": {
+        "bug": "Report existing behavior that is broken",
+        "feature": "Suggest a new capability or improvement",
+        "help": "Ask how to use an existing capability"
+      }
+    },
+    "blocked": {
+      "type": "predicate",
+      "instructions": "Is the customer currently unable to complete their work?"
+    }
+  }
+}

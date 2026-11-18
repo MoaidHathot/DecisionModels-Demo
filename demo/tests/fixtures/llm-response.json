@@ -1,0 +1,20 @@
+{
+  "provider": "copilot-llm",
+  "model": "gpt-6-luna",
+  "reasoningEffort": "low",
+  "elapsedMilliseconds": 5858.2209,
+  "answers": {
+    "refund": { "type": "predicate", "probability": 0.99 },
+    "team": {
+      "type": "choice",
+      "choice": "billing",
+      "probabilities": { "billing": 0.98, "engineering": 0.01, "support": 0.01 }
+    },
+    "severity": {
+      "type": "score",
+      "score": 1.4,
+      "probabilities": [0.2, 0.6, 0.2]
+    }
+  },
+  "usage": [{ "model": "gpt-6-luna", "reasoningEffort": "low", "duration": 1697, "inputTokens": 346, "outputTokens": 84 }]
+}

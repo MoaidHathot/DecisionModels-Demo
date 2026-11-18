@@ -1,0 +1,23 @@
+{
+  "state": "The checkout API has returned HTTP 503 for every customer for the last 20 minutes. No orders are getting through. Our on-call engineer needs to investigate immediately.",
+  "questions": {
+    "team": {
+      "type": "choice",
+      "instructions": "Which team should handle this ticket?",
+      "choices": {
+        "billing": "Payments, invoices, and refunds",
+        "engineering": "Software bugs and outages",
+        "support": "Other requests"
+      }
+    },
+    "urgent": {
+      "type": "predicate",
+      "instructions": "Does this issue require immediate intervention?"
+    },
+    "severity": {
+      "type": "score",
+      "instructions": "How severe is this incident?",
+      "levels": ["Minor inconvenience", "One customer blocked", "Many customers blocked"]
+    }
+  }
+}

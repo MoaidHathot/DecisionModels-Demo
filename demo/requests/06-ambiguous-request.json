@@ -1,0 +1,27 @@
+{
+  "state": "The total on my invoice looks different from what I expected. I might have added an extra seat last month, but I'm not sure. Could someone explain the breakdown? I'm not asking for any money back yet.",
+  "questions": {
+    "refund": {
+      "type": "predicate",
+      "instructions": "Is the customer explicitly requesting a refund now?"
+    },
+    "team": {
+      "type": "choice",
+      "instructions": "Which team should handle this request?",
+      "choices": {
+        "billing": "Payments, invoices, and refunds",
+        "engineering": "Software bugs and outages",
+        "support": "Other requests"
+      }
+    },
+    "tone": {
+      "type": "choice",
+      "instructions": "What is the tone of the message?",
+      "choices": {
+        "angry": "Frustrated or demanding",
+        "curious": "Uncertain and seeking clarification",
+        "positive": "Happy or appreciative"
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "provider": "copilot",
+  "requestedModel": "microsoft-decision-1",
+  "model": "microsoft-decision-1.1",
+  "protocol": "decisions.ask",
+  "elapsedMilliseconds": 5397.0772,
+  "answers": {
+    "refund": { "type": "predicate", "probability": 0.9995788684419998 },
+    "team": {
+      "type": "choice",
+      "choice": "billing",
+      "probabilities": { "billing": 0.999336853733245, "engineering": 0.00019245936364968808, "support": 0.00047068690310540963 },
+      "confidence": 0.9990052805998673,
+      "normalizedConfidence": 0.9990052805998675,
+      "tied": false
+    },
+    "severity": {
+      "type": "score",
+      "score": 1.3242391218983576,
+      "probabilities": [0.06711196596935515, 0.5415369461629319, 0.3913510878677129],
+      "levels": ["Low", "Medium", "High"],
+      "confidence": 0.3123054192443979,
+      "normalizedConfidence": 0.31230541924439786
+    }
+  },
+  "usage": { "input_tokens": 110, "output_tokens": 3 },
+  "transport": "sdk",
+  "rawFormat": "copilot-sdk-json"
+}

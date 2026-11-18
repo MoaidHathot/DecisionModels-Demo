@@ -424,3 +424,11 @@ FodyWeavers.xsd
 
 # Official VS Code C# Dev Kit Extension exclusion
 #*.lscache
+
+# Decision Lab demo
+demo/dist/
+demo/.runtime/
+demo/.artifacts/
+demo/test-results/
+demo/playwright-report/
+demo/config.local.json

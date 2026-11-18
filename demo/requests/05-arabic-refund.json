@@ -1,0 +1,18 @@
+{
+  "state": "تم خصم المبلغ مرتين من بطاقتي للطلب نفسه. أرجو إعادة المبلغ المكرر إلى حسابي، وشكراً.",
+  "questions": {
+    "refund": {
+      "type": "predicate",
+      "instructions": "Does the customer request a refund?"
+    },
+    "team": {
+      "type": "choice",
+      "instructions": "Which team should handle this ticket?",
+      "choices": {
+        "billing": "Payments, invoices, and refunds",
+        "engineering": "Software bugs and outages",
+        "support": "Other requests"
+      }
+    }
+  }
+}

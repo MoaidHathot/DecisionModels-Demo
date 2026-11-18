@@ -1,0 +1,14 @@
+{
+  "state": "I was charged twice for my order. Please refund the duplicate charge.",
+  "questions": {
+    "team": {
+      "type": "choice",
+      "instructions": "Which team should handle this ticket?",
+      "choices": {
+        "billing": "Payments, invoices, and refunds",
+        "engineering": "Software bugs and outages",
+        "support": "Other requests"
+      }
+    }
+  }
+}
